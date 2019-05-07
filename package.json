@@ -10,6 +10,7 @@
   "author": "Eduardo P. Rivero <jrperedo@gmail.com> (https://blog.eperedo.com/)",
   "license": "MIT",
   "dependencies": {
-    "nuxt": "2.6.3"
+    "nuxt": "2.6.3",
+    "vuetify": "1.5.14"
   }
 }
