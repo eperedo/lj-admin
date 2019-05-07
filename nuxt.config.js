@@ -1,6 +1,6 @@
 const config = {
 	mode: 'spa',
-	plugins: ['~/plugins/vuetify.js'],
+	plugins: ['~/plugins/app.js', '~/plugins/vuetify.js'],
 	rootDir: './src',
 };
 

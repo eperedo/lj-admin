@@ -2,7 +2,7 @@
   <v-app>
     <the-toolbar @click="toggleSidebar(true)"/>
     <the-sidebar :value="showSidebar" @input="toggleSidebar"/>
-    <v-content>
+    <v-content grid-list-xs>
       <v-container fluid>
         <nuxt-child/>
       </v-container>

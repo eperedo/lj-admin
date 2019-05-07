@@ -8,7 +8,7 @@
       </v-list-tile>
       <v-list-tile>
         <v-list-tile-content>
-          <nuxt-link to="/">Personajes</nuxt-link>
+          <nuxt-link to="/characters">Personajes</nuxt-link>
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile>
