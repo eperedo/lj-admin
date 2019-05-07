@@ -1,0 +1,15 @@
+{
+  "name": "lj-admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "keywords": [],
+  "author": "Eduardo P. Rivero <jrperedo@gmail.com> (https://blog.eperedo.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt": "2.6.3"
+  }
+}
