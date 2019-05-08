@@ -1,0 +1,14 @@
+mutation insert_characters($name: String, $nickname: String, $avatar: String) {
+  insert_characters(objects: {
+    name: $name
+    nickname: $nickname
+    avatar: $avatar
+  }) {
+    returning {
+      id
+      name
+      nickname
+      avatar
+    }
+  }
+}

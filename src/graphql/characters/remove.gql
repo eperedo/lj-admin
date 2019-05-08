@@ -1,0 +1,14 @@
+mutation delete_characters($id: uuid) {
+  delete_characters(where: {
+    id: {
+      _eq: $id
+    }
+  }) {
+    returning {
+      id
+			avatar
+      name
+      nickname
+    }
+  }
+}

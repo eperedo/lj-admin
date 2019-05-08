@@ -1,0 +1,18 @@
+mutation update_characters($id: uuid, $name: String, $avatar: String, $nickname: String){
+  update_characters(where: {
+    id: {
+      _eq: $id
+    }
+  }, _set: {
+    name: $name
+    avatar: $avatar
+    nickname: $nickname
+  }) {
+    returning {
+			avatar
+      id
+      name
+      nickname
+    }
+  }
+}

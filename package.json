@@ -10,6 +10,8 @@
   "author": "Eduardo P. Rivero <jrperedo@gmail.com> (https://blog.eperedo.com/)",
   "license": "MIT",
   "dependencies": {
+    "@nuxtjs/apollo": "4.0.0-rc4",
+    "graphql-tag": "2.10.1",
     "nuxt": "2.6.3",
     "vuetify": "1.5.14"
   }

@@ -1,0 +1,8 @@
+query listCharacters ($limit: Int, $offset: Int) {
+	characters(limit: $limit, offset: $offset) {
+		avatar
+		id
+		name
+		nickname
+	}
+}
