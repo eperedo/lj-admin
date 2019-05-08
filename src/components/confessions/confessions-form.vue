@@ -107,13 +107,13 @@ function involvedId() {
 
 function links() {
 	return this.link
-		? {
-				[this.link]: {
+		? [
+				{
 					type: 'link',
-					link: this.link,
+					url: this.link,
 				},
-		  }
-		: '';
+		  ]
+		: null;
 }
 
 function modelHandler(newVal) {

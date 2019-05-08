@@ -1,0 +1,11 @@
+mutation delete_confessions($id: uuid) {
+  delete_confessions(where: {
+    id: {
+      _eq: $id
+    }
+  }) {
+    returning {
+      id
+    }
+  }
+}

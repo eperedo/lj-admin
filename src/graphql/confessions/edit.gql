@@ -1,0 +1,29 @@
+mutation update_confessions(
+	$id: uuid,
+	$links: json,
+	$longText: String,
+	$money: numeric,
+	$shortText: String,
+	$when: timestamptz,
+)
+{
+  update_confessions(where: {
+    id: {
+      _eq: $id
+    }
+  }, _set: {
+		links: $links,
+		longText: $longText,
+		money: $money,
+		shortText: $shortText,
+		when: $when
+  }) {
+    returning {
+			links,
+			longText,
+			money,
+			shortText,
+			when
+    }
+  }
+}
