@@ -1,0 +1,21 @@
+query confessions($limit: Int, $offset: Int) {
+	confessions {
+		author {
+      id
+      name
+      nickname
+    }
+    id
+    images
+    involved {
+      id
+      name
+      nickname
+    }
+    links
+    longText
+    money
+    shortText
+    when
+	}
+}

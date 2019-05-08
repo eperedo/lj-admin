@@ -13,7 +13,7 @@
       </v-list-tile>
       <v-list-tile>
         <v-list-tile-content>
-          <nuxt-link to="/">Declaraciones</nuxt-link>
+          <nuxt-link to="/confessions">Declaraciones</nuxt-link>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
