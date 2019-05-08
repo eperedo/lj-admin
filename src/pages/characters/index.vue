@@ -1,14 +1,8 @@
 <template>
   <ApolloQuery :query="require('@/graphql/characters/list.gql')" :variables="{ limit, offset }">
     <template v-slot="{ result: { loading, error, data } }">
-      <characters-list
-        v-if="data"
-        :rows="data.characters"
-        @add="showForm"
-        @edit="showDataInForm($event, 'edit')"
-        @remove="showDataInForm($event, 'remove')"
-      />
       <ApolloMutation
+        v-if="status"
         :mutation="title.graphql.query"
         :variables="title.graphql.variables"
         :update="onUpdate"
@@ -28,6 +22,13 @@
           ></characters-form>
         </template>
       </ApolloMutation>
+      <characters-list
+        v-if="data"
+        :rows="data.characters"
+        @add="showForm"
+        @edit="showDataInForm($event, 'edit')"
+        @remove="showDataInForm($event, 'remove')"
+      />
     </template>
   </ApolloQuery>
 </template>
@@ -51,12 +52,12 @@ function data() {
 			name: '',
 			nickname: '',
 		},
-		status: FORM_ADD_STATUS,
+		status: null,
 	};
 }
 
 function clearForm() {
-	this.status = FORM_ADD_STATUS;
+	this.status = null;
 	this.characterId = null;
 	this.character.avatar = '';
 	this.character.name = '';
@@ -102,6 +103,7 @@ function showDataInForm(row, status) {
 	this.character.avatar = row.avatar;
 	this.character.name = row.name;
 	this.character.nickname = row.nickname;
+	window.scrollTo(0, 0);
 }
 
 function showForm() {
