@@ -6,7 +6,6 @@ query confessions($limit: Int, $offset: Int) {
       nickname
     }
     id
-    images
     involved {
       id
       name

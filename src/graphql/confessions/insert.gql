@@ -1,0 +1,39 @@
+mutation insert_confessions(
+	$authorId: uuid,
+	$involvedId: uuid,
+	$links: json,
+	$longText: String,
+	$money: numeric,
+	$shortText: String,
+	$when: timestamptz,
+) {
+		insert_confessions(objects: {
+			authorId: $authorId,
+			involvedId: $involvedId,
+			links: $links,
+			longText: $longText,
+			money: $money,
+			shortText: $shortText,
+			when: $when
+		}
+		) {
+			returning {
+				id,
+				author {
+					id,
+					name,
+					nickname,
+				},
+				involved {
+					id,
+					name,
+					nickname,
+				},
+				links,
+				longText,
+				money,
+				shortText,
+				when,
+			}
+		}
+	}
