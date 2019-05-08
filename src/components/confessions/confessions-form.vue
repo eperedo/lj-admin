@@ -10,6 +10,7 @@
           item-value="id"
           item-text="name"
           label="Quién hizo la declaración?"
+          :disabled="disableFields"
           :items="characters"
         ></v-combobox>
       </v-flex>
@@ -19,6 +20,7 @@
           item-value="id"
           item-text="name"
           label="Quién está involucrado en la declaración?"
+          :disabled="disableFields"
           :items="characters"
         ></v-combobox>
       </v-flex>
@@ -59,6 +61,7 @@
 </template>
 
 <script>
+import { FORM_ADD_STATUS } from '../characters/helper';
 const initialData = {
 	author: null,
 	involved: null,
@@ -99,6 +102,10 @@ function created() {
 
 function clearHandler(newVal) {
 	this.clearForm();
+}
+
+function disableFields() {
+	return this.status !== FORM_ADD_STATUS;
 }
 
 function involvedId() {
@@ -146,6 +153,7 @@ export default {
 	created,
 	computed: {
 		authorId,
+		disableFields,
 		involvedId,
 		links,
 	},
@@ -166,6 +174,9 @@ export default {
 		model: {
 			default: () => null,
 			type: Object,
+		},
+		status: {
+			type: String,
 		},
 		title: {
 			default: '',

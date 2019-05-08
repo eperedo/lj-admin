@@ -12,6 +12,7 @@
         :characters="data.characters"
         :clear="clearForm"
         :model="confession"
+        :status="status"
         @clear="hideForm"
         @submit="onSubmit"
       ></confessions-form>
@@ -19,8 +20,8 @@
         v-if="data"
         :rows="data.confessions"
         @add="add"
-        @edit="showDataInForm"
-        @remove="showDataInForm"
+        @edit="showDataInForm($event, 'edit')"
+        @remove="showDataInForm($event, 'remove')"
       ></confessions-list>
     </template>
   </ApolloQuery>
@@ -82,6 +83,10 @@ async function onSubmit(confession) {
 	let variables = confession;
 	if (this.status === FORM_REMOVE_STATUS) {
 		variables = { id: this.confessionId };
+	} else if (this.status === FORM_EDIT_STATUS) {
+		variables.id = this.confessionId;
+		delete variables.authorId;
+		delete variables.involvedId;
 	}
 	await this.$apollo.mutate({
 		mutation: this.graphqlInfo.mutation,
@@ -91,11 +96,12 @@ async function onSubmit(confession) {
 	this.clearForm = !this.clearForm;
 }
 
-function showDataInForm(row) {
-	this.status = FORM_REMOVE_STATUS;
+function showDataInForm(row, status) {
+	this.status = status;
 	this.confessionId = row.id;
 	this.confession = row;
-	this.confession.link = row.links[0].url;
+	this.confession.link =
+		row.links && row.links.length > 0 ? row.links[0].url : '';
 }
 
 function update(store, { data: { insert_confessions, update_confessions } }) {
@@ -121,12 +127,12 @@ function update(store, { data: { insert_confessions, update_confessions } }) {
 			c => c.id === this.confessionId,
 		);
 		if (confessionIndex > -1) {
-			data.confessions[confessionIndex].links = update_confessions.links;
-			data.confessions[confessionIndex].longText = update_confessions.longText;
-			data.confessions[confessionIndex].money = update_confessions.money;
-			data.confessions[confessionIndex].shortText =
-				update_confessions.shortText;
-			data.confessions[confessionIndex].when = update_confessions.when;
+			const updatedData = update_confessions.returning[0];
+			data.confessions[confessionIndex].links = updatedData.links;
+			data.confessions[confessionIndex].longText = updatedData.longText;
+			data.confessions[confessionIndex].money = updatedData.money;
+			data.confessions[confessionIndex].shortText = updatedData.shortText;
+			data.confessions[confessionIndex].when = updatedData.when;
 		}
 	}
 	store.writeQuery({ ...query, data });
