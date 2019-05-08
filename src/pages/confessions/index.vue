@@ -1,31 +1,21 @@
 <template>
   <ApolloQuery
-    :query="require('@/graphql/characters/list.gql')"
+    :query="require('@/graphql/confessions/list.gql')"
     :variables="{
 			limit,
 			offset,
 		}"
   >
-    <template v-slot="{ result: { data: characters } }">
-      <ApolloQuery
-        :query="require('@/graphql/confessions/list.gql')"
-        :variables="{
-					limit,
-					offset,
-				}"
-      >
-        <template v-slot="{ result: { loading, error, data } }">
-          <confessions-form
-            v-if="status && characters"
-            :characters="characters.characters"
-            :clear="clearForm"
-            :model="confession"
-            @clear="hideForm"
-            @submit="onSubmit"
-          ></confessions-form>
-          <confessions-list v-if="data" :rows="data.confessions" @add="add"></confessions-list>
-        </template>
-      </ApolloQuery>
+    <template v-slot="{ result: { data } }">
+      <confessions-form
+        v-if="status && data"
+        :characters="data.characters"
+        :clear="clearForm"
+        :model="confession"
+        @clear="hideForm"
+        @submit="onSubmit"
+      ></confessions-form>
+      <confessions-list v-if="data" :rows="data.confessions" @add="add"></confessions-list>
     </template>
   </ApolloQuery>
 </template>

@@ -1,4 +1,4 @@
-query confessions($limit: Int, $offset: Int) {
+query lists($limit: Int, $offset: Int) {
 	confessions {
 		author {
       id
@@ -16,5 +16,11 @@ query confessions($limit: Int, $offset: Int) {
     money
     shortText
     when
+	},
+  characters(limit: $limit, offset: $offset) {
+		avatar
+		id
+		name
+		nickname
 	}
 }
