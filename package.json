@@ -1,18 +1,19 @@
 {
-  "name": "lj-admin",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nuxt"
-  },
-  "keywords": [],
-  "author": "Eduardo P. Rivero <jrperedo@gmail.com> (https://blog.eperedo.com/)",
-  "license": "MIT",
-  "dependencies": {
-    "@nuxtjs/apollo": "4.0.0-rc4",
-    "graphql-tag": "2.10.1",
-    "nuxt": "2.6.3",
-    "vuetify": "1.5.14"
-  }
+	"name": "lj-admin",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "nuxt generate",
+		"dev": "nuxt"
+	},
+	"keywords": [],
+	"author": "Eduardo P. Rivero <jrperedo@gmail.com> (https://blog.eperedo.com/)",
+	"license": "MIT",
+	"dependencies": {
+		"@nuxtjs/apollo": "4.0.0-rc4",
+		"graphql-tag": "2.10.1",
+		"nuxt": "2.6.3",
+		"vuetify": "1.5.14"
+	}
 }

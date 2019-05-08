@@ -6,11 +6,12 @@
 			offset,
 		}"
   >
-    <template v-slot="{ result: { data } }">
+    <template v-slot="{ result: { data, loading } }">
       <confessions-form
         v-if="status && data"
         :characters="data.characters"
         :clear="clearForm"
+        :disable-button="loading"
         :model="confession"
         :status="status"
         @clear="hideForm"
@@ -43,7 +44,7 @@ function data() {
 		confession: {
 			authorId: null,
 			involvedId: null,
-			money: 30,
+			money: 0,
 			link: null,
 			longText: '',
 			shortText: '',
