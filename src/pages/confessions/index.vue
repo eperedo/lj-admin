@@ -11,7 +11,7 @@
         v-if="status && data"
         :characters="data.characters"
         :clear="clearForm"
-        :disable-button="loading"
+        :disable-button="mutationLoading"
         :model="confession"
         :status="status"
         @clear="hideForm"
@@ -45,12 +45,13 @@ function data() {
 			authorId: null,
 			involvedId: null,
 			money: 0,
-			link: null,
+			link: 'https://idl-reporteros.pe/asi-hablo-barata/',
 			longText: '',
 			shortText: '',
-			when: null,
+			when: '2019-04-24',
 		},
 		limit: 50,
+		mutationLoading: false,
 		offset: 0,
 		status: null,
 	};
@@ -81,6 +82,7 @@ function hideForm() {
 }
 
 async function onSubmit(confession) {
+	this.mutationLoading = true;
 	let variables = confession;
 	if (this.status === FORM_REMOVE_STATUS) {
 		variables = { id: this.confessionId };
@@ -94,6 +96,7 @@ async function onSubmit(confession) {
 		update: this.update,
 		variables,
 	});
+	this.mutationLoading = false;
 	this.clearForm = !this.clearForm;
 }
 

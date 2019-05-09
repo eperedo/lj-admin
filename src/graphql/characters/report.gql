@@ -1,0 +1,32 @@
+query charactersReport($limit: Int, $offset: Int) {
+  characters(limit: $limit, offset: $offset) {
+		avatar
+		id
+		name
+		nickname
+    totals: involved_aggregate {
+      aggregate {
+        count
+        sum {
+          money
+        }
+      }
+    }
+    authors: involved_aggregate(distinct_on: authorId) {
+      nodes {
+        author {
+					avatar
+					id
+          name
+					nickname
+        }
+      }
+    }
+    involved {
+      links
+      longText
+      shortText
+      money
+    }
+  }
+}

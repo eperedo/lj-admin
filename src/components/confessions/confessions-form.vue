@@ -53,7 +53,13 @@
         <v-textarea label="Texto" placeholder="Declaración completa" v-model="longText"/>
       </v-flex>
       <v-flex xs12 center>
-        <base-button color="primary" round type="submit" :loading="disableButton">Guardar</base-button>
+        <base-button
+          color="primary"
+          round
+          type="submit"
+          :disabled="disableButton"
+          :loading="disableButton"
+        >Guardar</base-button>
         <base-button color="error" round @click.native="clearForm">Cancelar</base-button>
       </v-flex>
     </v-layout>
@@ -97,7 +103,7 @@ function created() {
 	if (barata > -1) {
 		this.author = this.characters[barata];
 	}
-	this.involved = this.characters[1];
+	this.involved = this.characters.find(c => c.name === 'Alan García');
 }
 
 function clearHandler(newVal) {

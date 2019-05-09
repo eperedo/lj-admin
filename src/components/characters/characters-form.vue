@@ -29,7 +29,13 @@
         />
       </v-flex>
       <v-flex xs12>
-        <base-button color="primary" round type="submit" :loading="disableButton">Guardar</base-button>
+        <base-button
+          color="primary"
+          round
+          type="submit"
+          :disabled="disableButton"
+          :loading="disableButton"
+        >Guardar</base-button>
         <base-button color="error" round @click.native="$emit('clear')">Cancelar</base-button>
       </v-flex>
     </v-layout>
